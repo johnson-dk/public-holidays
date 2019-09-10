@@ -4,7 +4,6 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import * as API from "./../util/API";
 import { CountryProps } from "./../types";
-import Moment from "react-moment";
 import HolidayDetails from "../components/HolidayDetails";
 
 interface Props {}
@@ -35,9 +34,10 @@ class Country extends React.Component<Props & RouteComponentProps, State> {
 
   render() {
     const countriesDataResponse = this.state.countryHolidayData.map(function(
-      holiday: CountryProps
+      holiday: CountryProps,
+      index: number
     ) {
-      return <HolidayDetails holiday={holiday}></HolidayDetails>;
+      return <HolidayDetails holiday={holiday} key={index}></HolidayDetails>;
     });
     return (
       <div>
