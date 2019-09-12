@@ -7,7 +7,8 @@ export interface availableCountriesResponse {
   countriesData: countryInterface[];
 }
 
-export interface CountryProps {
+export interface HolidayInterface {
+  key: string;
   date: Date;
   localName: string;
   name: string;
