@@ -8,7 +8,8 @@ import Moment from "react-moment";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275
+    minWidth: 275,
+    margin: 15
   },
   title: {
     fontSize: 14

@@ -12,29 +12,9 @@ code {
     monospace;
 }
 
-#available-countries h1 {
-  margin-top: 15px;
+h1 {
+  margin-top: 15px !important; 
   color: rgb(30, 79, 240);
 }
 
-#country h1 {
-  margin-top: 15px;
-  color: rgb(30, 79, 240);
-}
-
-#country .back-to-countries {
-  margin: 15px;
-}
-
-#country .back-to-countries a {
-  color: white;
-}
-
-#country .sort-asc-desc {
-  margin: 15px;
-}
-
-#country .select-box {
-  margin: 15px;
-}
 

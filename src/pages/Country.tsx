@@ -3,15 +3,41 @@ import { Link as RouterLink } from "react-router-dom";
 import * as API from "./../util/API";
 import HolidayDetails from "../components/HolidayDetails";
 import { HolidayInterface } from "./../types";
-import Link from "@material-ui/core/Link";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import InputLabel from "@material-ui/core/InputLabel";
+import Link from "@material-ui/core/Link";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 
+const buttonMargin = 15;
+const useStyles = makeStyles({
+  card: {
+    minWidth: 275,
+    margin: buttonMargin
+  },
+  title: {
+    fontSize: 14
+  },
+  backToCountries: {
+    margin: buttonMargin
+  },
+  backToCountriesText: {
+    color: "white"
+  },
+  sortAscDesc: {
+    margin: buttonMargin
+  },
+  selectBox: {
+    margin: buttonMargin
+  },
+});
+
 const Country = ({ match }) => {
+  const classes = useStyles();
   const currentYear = new Date().getFullYear();
 
   // create a range of years for the select +/- 50 from the current year.
@@ -38,9 +64,9 @@ const Country = ({ match }) => {
   ];
 
   const [state, setState] = useState({
-    from: 0,
-    to: 11,
-    year: "50",
+    from: 0, // default to January
+    to: 11, // default to December
+    year: 50, // default to current year
     holidayData: []
   });
 
@@ -68,9 +94,6 @@ const Country = ({ match }) => {
   const filterByDate = response => {
     return response.filter(holiday => {
       const month = new Date(holiday.date).getMonth();
-      console.log(month);
-      console.log(state.from);
-      console.log(state.to);
       return month >= state.from && month <= state.to;
     });
   };
@@ -99,8 +122,8 @@ const Country = ({ match }) => {
       <Typography variant="h4" component="h1" align="center" gutterBottom>
         {match.params.country} Holidays
       </Typography>
-      <Button variant="contained" className="back-to-countries" color="primary">
-        <Link component={RouterLink} to="/">
+      <Button variant="contained" className={classes.backToCountries} color="primary">
+        <Link component={RouterLink} to="/" className={classes.backToCountriesText}>
           View all Countries
         </Link>
       </Button>
@@ -108,14 +131,14 @@ const Country = ({ match }) => {
         <FormControl>
           <Button
             variant="contained"
-            className="sort-asc-desc"
+            className={classes.sortAscDesc}
             color="primary"
             onClick={sortHolidayData}
           >
             Sort Asc/Desc
           </Button>
         </FormControl>
-        <FormControl className="select-box">
+        <FormControl className={classes.selectBox}>
           <InputLabel htmlFor="from">From</InputLabel>
           <Select
             value={state.from}
@@ -134,7 +157,7 @@ const Country = ({ match }) => {
             })}
           </Select>
         </FormControl>
-        <FormControl className="select-box">
+        <FormControl className={classes.selectBox}>
           <InputLabel htmlFor="to">To</InputLabel>
           <Select
             value={state.to}
@@ -153,7 +176,7 @@ const Country = ({ match }) => {
             })}
           </Select>
         </FormControl>
-        <FormControl className="select-box">
+        <FormControl className={classes.selectBox}>
           <InputLabel htmlFor="from">From</InputLabel>
           <Select
             value={state.year}
@@ -171,6 +194,7 @@ const Country = ({ match }) => {
               );
             })}
           </Select>
+          <FormHelperText id="my-helper-text">Select year to filter</FormHelperText>
         </FormControl>
       </form>
       {state.holidayData.map(function(holiday: HolidayInterface) {

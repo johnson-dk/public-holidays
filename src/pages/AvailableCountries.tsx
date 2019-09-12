@@ -1,28 +1,64 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as API from "./../util/API";
 import { countryInterface } from "./../types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Typography from '@material-ui/core/Typography';
-import { Link } from "react-router-dom";
-
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 
 function AvailableCountries() {
-  const [countries, setAvailableCountries] = useState([]);
+  const [countries, setAvailableCountries] = useState({
+    all: [],
+    filtered: [],
+    loaded: false
+  });
+
   const fetchAvailableCountries = async () => {
     const response = await API.getAvailableCountries();
-    setAvailableCountries(response);
+    setAvailableCountries({
+      all: response,
+      filtered: response,
+      loaded: true
+    });
   };
+
   useEffect(() => {
     fetchAvailableCountries();
   }, []);
+
+  const filterCountries = event => {
+    const filteredcountries = countries.all.filter(
+      (country: countryInterface) => {
+        return country.value.indexOf(event.target.value) !== -1;
+      }
+    );
+    setAvailableCountries(oldValues => ({
+      ...oldValues,
+      filtered: filteredcountries
+    }));
+  };
+
   return (
     <div id="available-countries">
       <Typography variant="h4" component="h1" align="center" gutterBottom>
-      All available countries
+        All available countries
       </Typography>
+      <TextField
+        onChange={filterCountries}
+        id="outlined-search"
+        label="Search field"
+        type="search"
+        fullWidth
+        margin="normal"
+        variant="outlined"
+        helperText="Search is case sensitive"
+      />
+      {countries.filtered.length === 0 && countries.loaded && (
+        <p>No results found(search is case sensitive)</p>
+      )}
       <ul>
-        {countries.map((country: countryInterface) => (
+        {countries.filtered.map((country: countryInterface) => (
           <ListItem
             button
             key={country.key}
