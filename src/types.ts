@@ -8,8 +8,8 @@ export interface availableCountriesResponse {
 }
 
 export interface HolidayInterface {
-  key: string;
-  date: Date;
+  key: number;
+  date: string;
   localName: string;
   name: string;
   countryCode: string;
