@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as API from "./../util/API";
-import { countryInterface } from "./../types";
+import { CountryInterface } from "./../types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
@@ -29,8 +29,8 @@ function AvailableCountries() {
 
   const filterCountries = event => {
     const filteredcountries = countries.all.filter(
-      (country: countryInterface) => {
-        return country.value.indexOf(event.target.value) !== -1;
+      (country: CountryInterface) => {
+        return country.value.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1;
       }
     );
     setAvailableCountries(oldValues => ({
@@ -58,7 +58,7 @@ function AvailableCountries() {
         <p>No results found(search is case sensitive)</p>
       )}
       <ul>
-        {countries.filtered.map((country: countryInterface) => (
+        {countries.filtered.map((country: CountryInterface) => (
           <ListItem
             button
             key={country.key}

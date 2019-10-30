@@ -1,10 +1,10 @@
-export interface countryInterface {
+export interface CountryInterface {
   key: string;
   value: string;
 }
 
-export interface availableCountriesResponse {
-  countriesData: countryInterface[];
+export interface CountryListInterface {
+  countryList: CountryInterface[];
 }
 
 export interface HolidayInterface {

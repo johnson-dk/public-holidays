@@ -71,7 +71,7 @@ const Country = ({ match }) => {
   });
 
   // There is no usable key on the response, date is the closest thing, but
-  // as there may be multiple holidays on a given date this creates a composite key
+  // as there may be multiple holidays on a given date this creates a composite
   // key to help with sorting the array in ascending/descending order.
   const addKeyToResponse = response => {
     return response.map((holiday, index) => ({

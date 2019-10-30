@@ -5,3 +5,7 @@ import AvailableCountries from "./AvailableCountries";
 it("renders without crashing", () => {
   shallow(<AvailableCountries/>);
 });
+
+it('should add two to the counter when the "two" value is true', () => {
+  const wrapper = shallow(<AvailableCountries />);
+});
