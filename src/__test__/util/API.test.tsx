@@ -1,5 +1,5 @@
-import { getAvailableCountries, getCountryHolidaysForYear } from "./API";
 import axios from "axios";
+import {getAvailableCountries, getCountryHolidaysForYear} from "../../util/API";
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 

@@ -82,14 +82,16 @@ const Country = ({ match }) => {
 
   const fetchHolidayData = async (year: number) => {
     const response = await API.getCountryHolidaysForYear(year, match.params.id);
+    console.log(response);
     setState(oldValues => ({
       ...oldValues,
       holidayData: addKeyToResponse(filterByDate(response))
     }));
   };
+
   useEffect(() => {
-    fetchHolidayData(currentYear);
-  }, []);
+    fetchHolidayData(currentYear).then();
+  }, [fetchHolidayData]);
 
   const filterByDate = response => {
     return response.filter(holiday => {

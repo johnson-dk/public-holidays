@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import HolidayDetails from "./HolidayDetails";
+import HolidayDetails from "../../components/HolidayDetails";
 
 const holiday = {
   key: 1,

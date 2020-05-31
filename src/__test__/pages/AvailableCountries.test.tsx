@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import AvailableCountries from "./AvailableCountries";
+import AvailableCountries from "../../pages/AvailableCountries";
+
 
 it("renders without crashing", () => {
   shallow(<AvailableCountries/>);

@@ -6,6 +6,7 @@ axios.defaults.responseType = "json";
 export const getAvailableCountries = async function(): Promise<any>{
   const response = await axios.get("/AvailableCountries");
   return response.data;
+
 }
 
 export const getCountryHolidaysForYear = async function(year: number, countryCode: string): Promise<any>{

@@ -3,10 +3,6 @@ export interface CountryInterface {
   value: string;
 }
 
-export interface CountryListInterface {
-  countryList: CountryInterface[];
-}
-
 export interface HolidayInterface {
   key: number;
   date: string;
