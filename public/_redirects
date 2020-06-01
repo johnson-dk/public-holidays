@@ -1,0 +1,2 @@
+/api/*  https://date.nager.at/api/v2/:splat  200
+/*    /index.html   200
