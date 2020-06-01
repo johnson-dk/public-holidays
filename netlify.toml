@@ -3,14 +3,11 @@
   to = "https://date.nager.at/api/v2/"
   status = 200
   force = true
-  headers = {X-From = "Netlify"}
+  [headers.values]
+      Access-Control-Allow-Origin = "*"
+      X-From = "Netlify"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[[headers]]
-  for = "/api"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
